@@ -60,7 +60,7 @@ function clicked(e){
         if(confirm('Are you sure?')){
             const li = e.target.parentElement;
             const id =  li.querySelector('.delete').getAttribute('data-id');
-            axios.delete(`https://crudcrud.com/api/bcaa1d4d2b774adfbb47251ca06028a1/appointmentData/${id}`)
+            axios.delete(`https://crudcrud.com/api/bcaa1d4d2b774adfbb47251ca06028a1/appointmentDatagit/${id}`)
             .then( (res)=>console.log('success'))
             .catch( (err) => console.log(err));
             items.removeChild(li);
