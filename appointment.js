@@ -5,6 +5,8 @@ let items = document.getElementById('items');
 let form = document.getElementById('form');
 
 form.addEventListener('submit',onSubmit);
+items.addEventListener('click',clicked);
+
 
 
 function onSubmit(e){
@@ -39,6 +41,8 @@ function showOutput(data){
     li.className = "list-group-item mb-2";
     let button = document.createElement('button');
     button.className = "delete";
+    button.setAttribute('data-id',data._id)
+
     button.style.float="right";
     button.innerText = "delete";
     li.appendChild(button);
@@ -49,4 +53,17 @@ function showOutput(data){
     edit.style.float = "right"; 
     li.appendChild(edit);
     items.appendChild(li);
+}
+
+function clicked(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure?')){
+            const li = e.target.parentElement;
+            const id =  li.querySelector('.delete').getAttribute('data-id');
+            axios.delete(`https://crudcrud.com/api/bcaa1d4d2b774adfbb47251ca06028a1/appointmentData/${id}`)
+            .then( (res)=>console.log('success'))
+            .catch( (err) => console.log(err));
+            items.removeChild(li);
+        }
+    }
 }
